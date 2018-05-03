@@ -1,0 +1,2 @@
+---
+basic_auth_pass_file: /etc/nginx/.{{ name }}.htpasswd

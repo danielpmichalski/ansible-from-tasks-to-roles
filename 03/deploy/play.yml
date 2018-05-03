@@ -6,8 +6,30 @@
 - hosts: every
   become: yes
   roles:
+    - { role: http_server_stop }
     - { role: repository_setup,
-        name: "{{ item.name }}",
-        port: "{{ item.port }}"
+        name: "{{ repository1.name }}",
+        port: "{{ repository1.port }}"
       }
-  with_items: "{{ repositories }}"
+    - { role: repository_setup,
+        name: "{{ repository2.name }}",
+        port: "{{ repository2.port }}",
+        security: {
+          ssl: "{{ repository2.security.ssl }}"
+        }
+      }
+    - { role: repository_setup,
+        name: "{{ repository3.name }}",
+        port: "{{ repository3.port }}",
+        security: {
+          ssl: "{{ repository3.security.ssl }}",
+          basic_auth: {
+            user: "{{ repository3.security.basic_auth.user }}",
+            password: "{{ repository3.security.basic_auth.password }}"
+          }
+        }
+      }
+    - { role: http_server_start }
+    - { role: repository_files_setup, name: "{{ repository1.name }}", files: "{{ repository1.files }}" }
+    - { role: repository_files_setup, name: "{{ repository2.name }}", files: "{{ repository2.files }}" }
+    - { role: repository_files_setup, name: "{{ repository3.name }}", files: "{{ repository3.files }}" }

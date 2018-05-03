@@ -1,7 +1,4 @@
 ---
-- include_role:
-    name: http_server_stop
-
 - name: creating file repository directory
   file:
     dest: "{{ repositories_dir }}/{{ name }}"
@@ -14,9 +11,6 @@
   vars:
     port: "{{ port }}"
     directory: "{{ repositories_dir }}/{{ name }}"
-
-- include_role:
-    name: http_server_start
 
 - include_role:
     name: open_firewall_port

@@ -2,10 +2,12 @@
   become: yes
   roles:
     - { role: http_server_install }
+    - { role: http_server_stop }
     - { role: repository_setup,
         name: repository1,
         port: 8080
       }
+    - { role: http_server_start }
     - { role: repository_files_setup,
         name: repository1,
         files: "{{ repository1.files }}"

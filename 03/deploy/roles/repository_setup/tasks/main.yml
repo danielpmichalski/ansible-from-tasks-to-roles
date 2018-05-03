@@ -1,7 +1,4 @@
 ---
-- include_role:
-    name: http_server_stop
-
 - name: creating file repository directory
   file:
     dest: "{{ repositories_dir }}/{{ name }}"
@@ -12,11 +9,13 @@
     src: repository.conf.j2
     dest: /etc/nginx/conf.d/{{ name }}.conf
   vars:
-    port: "{{ port }}"
     directory: "{{ repositories_dir }}/{{ name }}"
 
-- include_role:
-    name: http_server_start
+- name: configuring basic auth password file
+  when: security is defined and security.basic_auth is defined
+  shell: |
+    bash -c "echo -n '{{ security.basic_auth.user }}:' > {{ basic_auth_pass_file }}"
+    bash -c "echo {{ security.basic_auth.password }} | openssl passwd -apr1 -stdin >> {{ basic_auth_pass_file }}"
 
 - include_role:
     name: open_firewall_port
