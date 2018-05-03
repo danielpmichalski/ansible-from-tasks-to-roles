@@ -1,0 +1,9 @@
+server {
+    listen       {{ port }};
+    server_name  localhost;
+
+    location / {
+        autoindex on;
+        root   {{ directory }};
+    }
+}

@@ -1,0 +1,63 @@
+- hosts: every
+  become: yes
+  tasks:
+    - name: configuring Nginx repository
+      copy:
+        dest: /etc/yum.repos.d/nginx.repo
+        content: |
+          [nginx]
+          name=nginx repo
+          baseurl=http://nginx.org/packages/centos/7/$basearch/
+          gpgcheck=0
+          enabled=1
+
+    - name: installing http server
+      yum:
+        name: nginx
+        state: installed
+
+    - name: remove default http server config file
+      file:
+        path: /etc/nginx/conf.d/default.conf
+        state: absent
+
+    - name: creating file repository directory
+      file:
+        dest: /var/repositories/repository1
+        state: directory
+
+    - name: stopping http server
+      service:
+        name: nginx
+        state: stopped
+
+    - name: configuring file repository http access
+      template:
+        src: repository.conf.j2
+        dest: /etc/nginx/conf.d/repository1.conf
+      vars:
+        port: 8080
+        directory: /var/repositories/repository1
+
+    - name: starting http server
+      service:
+        name: nginx
+        state: started
+
+    - name: open firewall port
+      firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+
+    - name: creating static files
+      copy:
+        dest: "/var/repositories/repository1/{{ item }}"
+        group: nginx
+        owner: nginx
+        content: |
+          some content of {{ item }}...
+      with_items:
+        - file1
+        - file2
+        - file3

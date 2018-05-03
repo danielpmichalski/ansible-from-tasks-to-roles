@@ -1,0 +1,13 @@
+- hosts: every
+  become: yes
+  roles:
+    - { role: http_server_install }
+
+- hosts: every
+  become: yes
+  roles:
+    - { role: repository_setup,
+        name: "{{ item.name }}",
+        port: "{{ item.port }}"
+      }
+  with_items: "{{ repositories }}"

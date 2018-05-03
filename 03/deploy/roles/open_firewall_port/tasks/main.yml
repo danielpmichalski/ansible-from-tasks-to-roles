@@ -1,0 +1,6 @@
+---
+- name: opening firewall port {{ port }}
+  firewalld:
+    port: "{{ port }}/tcp"
+    permanent: yes
+    state: enabled

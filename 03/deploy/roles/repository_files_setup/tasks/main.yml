@@ -1,0 +1,6 @@
+---
+- name: creating static files for repository '{{ name }}'
+  copy:
+    dest: "{{ repositories_dir }}/{{ name }}/{{ item.name }}"
+    content: "{{ item.content }}"
+  with_items: "{{ files }}"

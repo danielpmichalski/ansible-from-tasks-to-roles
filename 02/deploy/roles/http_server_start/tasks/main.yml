@@ -1,0 +1,5 @@
+---
+- name: starting http server
+  service:
+    name: nginx
+    state: started

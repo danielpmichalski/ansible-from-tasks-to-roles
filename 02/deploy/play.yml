@@ -1,0 +1,12 @@
+- hosts: every
+  become: yes
+  roles:
+    - { role: http_server_install }
+    - { role: repository_setup,
+        name: repository1,
+        port: 8080
+      }
+    - { role: repository_files_setup,
+        name: repository1,
+        files: "{{ repository1.files }}"
+      }

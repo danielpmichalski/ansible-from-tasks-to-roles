@@ -1,0 +1,13 @@
+---
+repositories_dir: /var/repositories
+
+repository1:
+  files:
+    -
+      name: file1,
+      content: |
+        some file
+    -
+      name: file2,
+      content: |
+        some file

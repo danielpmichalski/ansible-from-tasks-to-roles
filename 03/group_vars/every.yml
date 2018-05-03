@@ -1,0 +1,45 @@
+---
+repositories_dir: /var/repositories
+
+repositories:
+  -
+    name: repository1
+    port: 8080
+    files:
+      -
+        name: file1
+        content: |
+          some file
+      -
+        name: file2
+        content: |
+          some file
+  -
+    name: repository2
+    port: 8081
+    security:
+      ssl: yes
+    files:
+      -
+        name: file2_1
+        content: |
+          content of file1 of repository2
+      -
+        name: file2_2
+        content: |
+          {
+            "type": "json"
+          }
+  -
+    name: repository3
+    port: 8082
+    security:
+      ssl: yes
+      basic_auth:
+        user: repo3_user
+        password:
+    files:
+      -
+        name: file3_1
+        content: |
+          content of file1 of repository3
