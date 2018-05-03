@@ -1,2 +1,21 @@
 # ansible-from-tasks-to-roles
-This is a project accompanying a blog post on Ansible's Roles feature.
+
+This is a project accompanying a blog post on Ansible's Roles feature - http://blog.tratif.com/2018/05/01/ansible-from-tasks-to-roles/.
+
+### Requirements
+
+OS: `CentOS 7`
+
+Vagrant: `2.0.4`
+
+Ansible: `2.3.0.0`
+
+### How to use
+
+The project holds several subprojects. Each subsequent folder being an improvement of previous subproject, e.g. `02` is an improvement of `01`.
+
+Running subprojects:
+```
+$ cd <subproject_folder>/
+$ ansible-playbook deploy/play.yml -i inventory
+```
