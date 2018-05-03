@@ -14,6 +14,8 @@ Ansible: `2.3.0.0`
 
 The project holds several subprojects. Each subsequent folder being an improvement of previous subproject, e.g. `02` is an improvement of `01`.
 
+Check the `inventory` files to re-configure connectivity details, if needed.
+
 Running subprojects:
 ```
 $ cd <subproject_folder>/
