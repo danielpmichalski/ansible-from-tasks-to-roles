@@ -20,4 +20,6 @@
     state: absent
 
 - name: setting permissive mode for SELinux
-  selinux: policy=targeted state=permissive
+  selinux:
+    policy: targeted
+    state: permissive
