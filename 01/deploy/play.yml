@@ -21,6 +21,9 @@
         path: /etc/nginx/conf.d/default.conf
         state: absent
 
+    - name: setting permissive mode for SELinux
+      selinux: policy=targeted state=permissive
+
     - name: creating file repository directory
       file:
         dest: /var/repositories/repository1

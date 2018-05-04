@@ -32,3 +32,10 @@ Vault password: ...
 Vault password used in this project: "vault" (without quotes)
 
 Keep the password safe in your production projects!
+
+### Other info
+
+To create a self-signed certificate, use the below command:
+```
+openssl req -x509 -newkey rsa:4096 -nodes -keyout nginx.key -out nginx.crt -days 3650
+```
