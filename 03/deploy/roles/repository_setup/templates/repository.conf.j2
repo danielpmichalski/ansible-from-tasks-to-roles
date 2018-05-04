@@ -1,6 +1,6 @@
 server {
-{% if security is defined and security.ssl is defined %}
-    listen       {{ port }}{{ security.ssl | ternary(' ssl', '') }};
+{% if security is defined and security.ssl is defined and security.ssl == true %}
+    listen       {{ port }} ssl;
     server_name  localhost;
 
     ssl_certificate      /etc/nginx/ssl/nginx.crt;
