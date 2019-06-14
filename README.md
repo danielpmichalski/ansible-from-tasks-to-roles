@@ -1,6 +1,6 @@
 # ansible-from-tasks-to-roles
 
-This is a project accompanying a blog post on Ansible's Roles feature - http://blog.tratif.com/2018/05/01/ansible-from-tasks-to-roles/.
+This is a project accompanying a blog post on Ansible's Roles feature - https://blog.tratif.com/2018/06/04/ansible-from-tasks-to-roles/.
 
 ### Requirements
 
