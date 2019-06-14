@@ -10,7 +10,7 @@ Vagrant: `2.0.4`
 
 Ansible: `2.3.0.0`
 
-### How to use
+### Usage
 
 The project holds several subprojects. Each subsequent folder being an improvement of previous subproject, e.g. `02` is an improvement of `01`.
 
